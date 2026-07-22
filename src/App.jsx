@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import cargoHero from "./assets/cargo-hero.png";
 import portOperations from "./assets/port-operations.png";
@@ -276,12 +276,58 @@ function SupportCta() {
   );
 }
 
-function handleEnquirySubmit(event) {
-  event.preventDefault();
-  // TODO: Connect this front-end form to the approved form submission service here.
-}
-
 function ContactSection() {
+  const [submission, setSubmission] = useState({ status: "idle", message: "Your details will be handled with care and used only to respond to your enquiry." });
+
+  async function handleEnquirySubmit(event) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const requiredFields = ["name", "email", "country", "service", "message"];
+
+    for (const fieldName of requiredFields) {
+      const field = form.elements.namedItem(fieldName);
+      const isBlank = !String(formData.get(fieldName) || "").trim();
+      field.setCustomValidity(isBlank ? "Please complete this required field." : "");
+    }
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    setSubmission({ status: "submitting", message: "Sending your enquiry…" });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(formData)),
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.error || "We could not send your enquiry. Please try again shortly.");
+      }
+
+      form.reset();
+      setSubmission({
+        status: "success",
+        message: "Thank you. Your enquiry has been sent successfully, and our team will be in touch soon.",
+      });
+    } catch (error) {
+      setSubmission({
+        status: "error",
+        message: error.message || "We could not send your enquiry. Please try again shortly.",
+      });
+    }
+  }
+
+  function clearFieldError(event) {
+    event.currentTarget.setCustomValidity("");
+  }
+
   return (
     <section className="contact-section" id="contact" aria-labelledby="contact-title">
       <div className="contact-orbit" aria-hidden="true" />
@@ -305,27 +351,27 @@ function ContactSection() {
           <div className="form-grid">
             <div className="form-field">
               <label htmlFor="name">Name *</label>
-              <input id="name" name="name" type="text" autoComplete="name" required />
+              <input id="name" name="name" type="text" autoComplete="name" maxLength="100" onInput={clearFieldError} required />
             </div>
 
             <div className="form-field">
               <label htmlFor="company">Company</label>
-              <input id="company" name="company" type="text" autoComplete="organization" />
+              <input id="company" name="company" type="text" autoComplete="organization" maxLength="120" />
             </div>
 
             <div className="form-field">
               <label htmlFor="email">Email *</label>
-              <input id="email" name="email" type="email" autoComplete="email" required />
+              <input id="email" name="email" type="email" autoComplete="email" maxLength="254" onInput={clearFieldError} required />
             </div>
 
             <div className="form-field">
               <label htmlFor="country">Country *</label>
-              <input id="country" name="country" type="text" autoComplete="country-name" required />
+              <input id="country" name="country" type="text" autoComplete="country-name" maxLength="100" onInput={clearFieldError} required />
             </div>
 
             <div className="form-field form-field-wide">
               <label htmlFor="service">Service required *</label>
-              <select id="service" name="service" defaultValue="" required>
+              <select id="service" name="service" defaultValue="" onInput={clearFieldError} required>
                 <option value="" disabled>Select a service</option>
                 {services.map((service) => (
                   <option value={service.title} key={service.title}>{service.title}</option>
@@ -335,13 +381,17 @@ function ContactSection() {
 
             <div className="form-field form-field-wide">
               <label htmlFor="message">Message *</label>
-              <textarea id="message" name="message" rows="6" required />
+              <textarea id="message" name="message" rows="6" maxLength="5000" onInput={clearFieldError} required />
             </div>
+
+            <input name="website" type="text" tabIndex="-1" autoComplete="off" hidden aria-hidden="true" />
           </div>
 
           <div className="form-actions">
-            <p>This form is for enquiries and is not yet connected to a submission service.</p>
-            <button className="button button-primary" type="submit">Submit enquiry <Icon name="arrow" /></button>
+            <p role="status" aria-live="polite">{submission.message}</p>
+            <button className="button button-primary" type="submit" disabled={submission.status === "submitting"}>
+              {submission.status === "submitting" ? "Sending enquiry" : "Submit enquiry"} <Icon name="arrow" />
+            </button>
           </div>
         </form>
       </div>
