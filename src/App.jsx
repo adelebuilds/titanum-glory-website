@@ -333,12 +333,41 @@ function ContactSection() {
       <div className="contact-orbit" aria-hidden="true" />
       <div className="section-shell contact-layout">
         <div className="contact-introduction" data-reveal>
-          <p className="section-label">Start a conversation</p>
-          <h2 id="contact-title">Let’s discuss your maritime documentation requirements.</h2>
-          <p>Tell us what support you require, and our team will respond with the appropriate next steps.</p>
+          <p className="section-label">Contact Titanum Glory</p>
+          <h2 id="contact-title">International maritime documentation enquiries.</h2>
+          <p>We welcome enquiries from shipping and offshore businesses in Malaysia and internationally. Tell us what support you require, and our team will respond with the appropriate next steps.</p>
+
+          <dl className="contact-details">
+            <div className="contact-detail">
+              <dt>Company</dt>
+              <dd>Titanum Glory Sdn. Bhd.</dd>
+            </div>
+            <div className="contact-detail">
+              <dt>Business email</dt>
+              <dd>Business email coming soon</dd>
+            </div>
+            <div className="contact-detail">
+              <dt>WhatsApp</dt>
+              <dd>WhatsApp contact coming soon</dd>
+            </div>
+            <div className="contact-detail">
+              <dt>Office</dt>
+              <dd>Port Klang, Selangor, Malaysia</dd>
+            </div>
+            <div className="contact-detail">
+              <dt>Business hours</dt>
+              <dd>Monday–Friday</dd>
+            </div>
+          </dl>
+
+          <div className="contact-support">
+            <span>Who we support</span>
+            <p>Titanum Glory supports shipping companies, ship managers, crewing agencies and offshore marine companies with Malaysian maritime documentation.</p>
+          </div>
+
           <div className="contact-note">
             <Icon name="compass" />
-            <span>Professional support for maritime documentation requirements.</span>
+            <span>International enquiries are welcome.</span>
           </div>
         </div>
 
@@ -579,16 +608,36 @@ function App() {
       <footer className="footer">
         <div className="section-shell footer-inner">
           <div className="footer-identity">
-            <a href="#home">Titanum Glory Sdn Bhd</a>
-            <p>Malaysian maritime documentation and regulatory support.</p>
+            <a href="#home">Titanum Glory Sdn. Bhd.</a>
+            <p>Professional Malaysian Maritime Documentation Support</p>
           </div>
-          <nav className="footer-navigation" aria-label="Footer navigation">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
-          </nav>
-          <p className="copyright">© {new Date().getFullYear()} Titanum Glory Sdn Bhd</p>
+
+          <div className="footer-directory">
+            <nav className="footer-column" aria-label="Footer services">
+              <span className="footer-heading">Services</span>
+              <a href="#services">MSID</a>
+              <a href="#services">Certificate of Recognition (COR)</a>
+              <a href="#services">EDUCOR</a>
+              <a href="#services">GOC Endorsement</a>
+              <a href="#services">Medical Booklet Procurement</a>
+              <a href="#services">Malaysian Maritime Documentation Support</a>
+            </nav>
+
+            <nav className="footer-column" aria-label="Footer company navigation">
+              <span className="footer-heading">Company</span>
+              <a href="#about">About</a>
+              <a href="#services">Services</a>
+              <a href="#contact">Contact</a>
+            </nav>
+
+            <div className="footer-column">
+              <span className="footer-heading">Location</span>
+              <p>Port Klang, Selangor, Malaysia</p>
+              <p>International enquiries are welcome.</p>
+            </div>
+          </div>
+
+          <p className="copyright">© {new Date().getFullYear()} Titanum Glory Sdn. Bhd. All rights reserved.</p>
         </div>
       </footer>
     </div>
