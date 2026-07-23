@@ -478,18 +478,19 @@ function App() {
             <div className="about-introduction" data-reveal>
               <div>
                 <p className="section-label">About Titanum Glory</p>
-                <h2 id="about-title">Navigating maritime documentation with confidence.</h2>
+                <h2 id="about-title">About Titanum Glory</h2>
               </div>
               <div className="about-copy">
                 <p>
-                  Titanum Glory Sdn Bhd is a Malaysian maritime documentation
-                  specialist committed to helping shipping and offshore
-                  businesses move forward with clarity and confidence.
+                  Titanum Glory Sdn. Bhd. is a Malaysian maritime documentation
+                  specialist supporting shipping companies, ship managers,
+                  crewing agencies, manning agencies and offshore marine
+                  companies.
                 </p>
                 <p>
-                  We combine strong industry knowledge with attentive,
-                  dependable service—making complex documentation processes
-                  simpler, smoother and more personal for every client.
+                  We provide reliable assistance for Malaysian maritime
+                  documentation, helping clients navigate documentation
+                  requirements accurately, professionally and efficiently.
                 </p>
               </div>
             </div>
@@ -497,35 +498,36 @@ function App() {
             <div className="image-purpose-grid" data-reveal>
               <figure className="about-image image-frame">
                 <img src={portOperations} alt="Modern cargo vessel at an international container port" />
-                <figcaption><span>Built for precision</span> Maritime expertise, delivered personally.</figcaption>
+                <figcaption><span>Malaysian maritime documentation</span> Accurate, professional and efficient assistance.</figcaption>
               </figure>
               <div className="purpose-stack">
                 <article className="purpose-card">
-                  <span className="purpose-number">01 / Mission</span>
-                  <p>To deliver timely, accurate and dependable maritime documentation support that keeps our clients moving.</p>
+                  <span className="purpose-number">Who we support</span>
+                  <p>Shipping companies, ship managers and crewing agencies.</p>
                 </article>
                 <article className="purpose-card purpose-card-dark">
-                  <span className="purpose-number">02 / Vision</span>
-                  <p>To be the trusted Malaysian partner for maritime documentation, recognised for integrity, expertise and exceptional service.</p>
+                  <span className="purpose-number">Who we support</span>
+                  <p>Manning agencies and offshore marine companies.</p>
                 </article>
               </div>
             </div>
 
-            <div className="feature-grid" aria-label="Why choose us">
-              <article className="feature-card" data-reveal>
-                <div className="card-icon"><Icon name="bolt" /></div>
-                <h3>Fast Processing</h3>
-                <p>Efficient handling and clear follow-through to keep every application on course.</p>
-              </article>
+            <div className="feature-grid" aria-label="Our focus">
               <article className="feature-card" data-reveal>
                 <div className="card-icon"><Icon name="shield" /></div>
-                <h3>Trusted Documentation</h3>
-                <p>Careful, accurate support grounded in maritime requirements and professional standards.</p>
+                <h3>Professional service</h3>
               </article>
               <article className="feature-card" data-reveal>
                 <div className="card-icon"><Icon name="headset" /></div>
-                <h3>Personal Support</h3>
-                <p>Responsive, one-to-one guidance from a team that understands your priorities.</p>
+                <h3>Prompt communication</h3>
+              </article>
+              <article className="feature-card" data-reveal>
+                <div className="card-icon"><Icon name="document" /></div>
+                <h3>Accurate documentation</h3>
+              </article>
+              <article className="feature-card" data-reveal>
+                <div className="card-icon"><Icon name="users" /></div>
+                <h3>Long-term client relationships</h3>
               </article>
             </div>
           </div>
