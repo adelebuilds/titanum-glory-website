@@ -227,23 +227,23 @@ function ServicesSection() {
 const reasons = [
   {
     icon: "anchor",
-    title: "Malaysian Maritime Focus",
-    copy: "Supporting clients with Malaysian maritime documentation and regulatory coordination.",
-  },
-  {
-    icon: "route",
-    title: "International Client Support",
-    copy: "Professional support for shipping companies, ship managers, crewing agencies, manning agencies and offshore marine companies.",
+    title: "Local Maritime Expertise",
+    copy: "Deep understanding of Malaysian maritime documentation, compliance and operational requirements.",
   },
   {
     icon: "headset",
-    title: "Personalised Service",
-    copy: "Clear communication, attentive coordination and practical support throughout each engagement.",
+    title: "Responsive Support",
+    copy: "We believe timely communication and dependable service are essential in the maritime industry.",
   },
   {
-    icon: "document",
-    title: "Careful Documentation Handling",
-    copy: "A structured and professional approach to document preparation, review and coordination.",
+    icon: "route",
+    title: "Practical Solutions",
+    copy: "We focus on solving problems efficiently with clear, practical guidance.",
+  },
+  {
+    icon: "bolt",
+    title: "Building for the Future",
+    copy: "We continue investing in technology and AI to improve client experience while maintaining a personal approach.",
   },
 ];
 
@@ -255,9 +255,9 @@ function WhyChooseSection() {
         <div className="why-choose-heading" data-reveal>
           <div>
             <p className="section-label">A dependable partnership</p>
-            <h2 id="why-choose-title">Why Choose Titanum Glory</h2>
+            <h2 id="why-choose-title">Why Titanum Glory</h2>
           </div>
-          <p>Focused maritime knowledge, thoughtful coordination and service shaped around every client requirement.</p>
+          <p>Maritime knowledge, responsive service and practical solutions shaped around every client requirement.</p>
         </div>
 
         <div className="why-choose-grid">
@@ -269,6 +269,98 @@ function WhyChooseSection() {
               </div>
               <h3>{reason.title}</h3>
               <p>{reason.copy}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const teamMembers = [
+  {
+    initials: "AY",
+    name: "Adele Yeoh",
+    role: "Lead – Strategy & Operations",
+    description: "Responsible for business strategy, operations, client experience, marketing, AI transformation and company development.",
+  },
+  {
+    initials: "TK",
+    name: "Tommy Kho",
+    role: "Marine Insurance Lead",
+    description: "Responsible for marine insurance advice, risk assessment, policy recommendations and supporting clients with appropriate insurance solutions.",
+  },
+];
+
+function TeamSection() {
+  return (
+    <section className="team-section" aria-labelledby="team-title">
+      <div className="team-heading" data-reveal>
+        <div>
+          <p className="section-label">The people behind our service</p>
+          <h2 id="team-title">Meet the Team</h2>
+        </div>
+        <p>Focused leadership across maritime operations, client experience and marine insurance.</p>
+      </div>
+      <div className="team-grid">
+        {teamMembers.map((member, index) => (
+          <article className="team-card" key={member.name} data-reveal>
+            <div className="team-card-top">
+              <span className="team-initials" aria-hidden="true">{member.initials}</span>
+              <span className="team-number">0{index + 1}</span>
+            </div>
+            <div className="team-card-copy">
+              <h3>{member.name}</h3>
+              <p className="team-role">{member.role}</p>
+              <p>{member.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+const upcomingSolutions = [
+  {
+    icon: "bolt",
+    title: "AI Maritime Solutions",
+    copy: "Building intelligent tools to improve maritime operations and client experience.",
+  },
+  {
+    icon: "document",
+    title: "Digital Client Portal",
+    copy: "A secure portal where clients can access information and manage requests.",
+  },
+  {
+    icon: "compass",
+    title: "Titanum Glory Operating System (TGOS)",
+    copy: "Our long-term AI-powered operating system designed to support business operations and future client services.",
+  },
+];
+
+function ExpandingSolutionsSection() {
+  return (
+    <section className="expanding-solutions section-dark" aria-labelledby="expanding-solutions-title">
+      <div className="section-orbit" aria-hidden="true" />
+      <div className="section-shell">
+        <div className="expanding-heading" data-reveal>
+          <div>
+            <p className="section-label section-label-light">Building thoughtfully for the future</p>
+            <h2 id="expanding-solutions-title">Expanding Our Maritime Solutions</h2>
+          </div>
+          <p>These planned capabilities form part of our long-term direction and are not yet available as active services.</p>
+        </div>
+        <div className="expanding-grid">
+          {upcomingSolutions.map((solution, index) => (
+            <article className="expanding-card" key={solution.title} data-reveal>
+              <div className="expanding-card-top">
+                <span className="coming-soon-label">Coming Soon</span>
+                <span className="expanding-number">0{index + 1}</span>
+              </div>
+              <div className="expanding-icon"><Icon name={solution.icon} /></div>
+              <h3>{solution.title}</h3>
+              <p>{solution.copy}</p>
             </article>
           ))}
         </div>
@@ -559,16 +651,13 @@ function App() {
         >
           <div className="hero-grid-lines" aria-hidden="true" />
           <div className="hero-content">
-            <p className="eyebrow">Malaysian Maritime Documentation</p>
-            <h1>
-              Trusted documentation support for the international maritime
-              industry.
-            </h1>
+            <p className="eyebrow">Malaysian Maritime Solutions</p>
+            <h1>Maritime Solutions for Shipping Companies Operating in Malaysia</h1>
             <p className="hero-description">
-              Titanum Glory supports shipping companies, ship managers,
-              crewing agencies, manning agencies and offshore marine companies
-              with professional Malaysian maritime documentation and
-              regulatory support.
+              Supporting shipping companies, ship managers, crewing agencies
+              and offshore marine businesses through documentation, regulatory
+              compliance, marine insurance and future AI-powered maritime
+              solutions.
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href="#contact">
@@ -620,6 +709,8 @@ function App() {
                 <p>To simplify maritime operations for our clients by providing responsive, accurate and practical support across maritime documentation, regulatory compliance, marine insurance and future AI-powered maritime solutions.</p>
               </article>
             </div>
+
+            <TeamSection />
 
             <div className="image-purpose-grid" data-reveal>
               <figure className="about-image image-frame">
@@ -718,6 +809,8 @@ function App() {
           </div>
         </section>
 
+        <ExpandingSolutionsSection />
+
         <SupportCta />
 
         <ContactSection />
@@ -727,7 +820,7 @@ function App() {
         <div className="section-shell footer-inner">
           <div className="footer-identity">
             <a href="/" aria-label="Titanum Glory home">Titanum Glory Sdn. Bhd.</a>
-            <p>Professional Malaysian Maritime Documentation Support</p>
+            <p>Maritime Solutions for Shipping Companies Operating in Malaysia</p>
           </div>
 
           <div className="footer-directory">
@@ -746,6 +839,8 @@ function App() {
               <a href="#about">About</a>
               <a href="#services">Services</a>
               <a href="#contact">Contact</a>
+              <a href="/privacy-policy.html">Privacy Policy</a>
+              <a href="/terms-of-use.html">Terms of Use</a>
             </nav>
 
             <div className="footer-column">
