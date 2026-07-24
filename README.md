@@ -19,9 +19,22 @@ Run `npm run dev` for frontend-only work. Run `vercel dev` when testing the cont
 Before deployment, run:
 
 ```sh
+npm test
 npm run lint
 npm run build
 ```
+
+## Launch and domain configuration
+
+The public canonical URL, sitemap, robots file and sharing metadata are configured for `https://titanumglory.com/`.
+
+Before enabling the contact form in production:
+
+- Add `RESEND_API_KEY`, `CONTACT_TO_EMAIL` and `CONTACT_FROM_EMAIL` to the Vercel Production environment.
+- Verify the sending domain in Resend and add the DNS records supplied by Resend.
+- Deploy once after all environment variables have been saved.
+
+Vercel provisions HTTPS automatically after the domain DNS records are connected and verified.
 
 ## Vite notes
 

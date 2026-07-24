@@ -1,10 +1,10 @@
 export const SERVICE_NAMES = [
-  "Malaysian Seafarer ID support",
-  "Certificate of Recognition support",
-  "Medical booklet procurement support",
-  "Education certificate recognition support",
-  "SID collection and CDC stamping support",
-  "Courier coordination",
+  "MSID (Malaysian Seafarer's Identity Document)",
+  "Certificate of Recognition (COR)",
+  "EDUCOR",
+  "GOC Endorsement",
+  "Medical Booklet Procurement",
+  "Malaysian Maritime Documentation Support",
 ];
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

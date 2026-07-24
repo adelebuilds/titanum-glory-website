@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import cargoHero from "./assets/cargo-hero.png";
-import portOperations from "./assets/port-operations.png";
-import documentation from "./assets/documentation.png";
-import professionalTeam from "./assets/professional-team.png";
-import maritimeServices from "./assets/maritime-services.png";
+import cargoHero from "./assets/cargo-hero.webp";
+import portOperations from "./assets/port-operations.webp";
+import documentation from "./assets/documentation.webp";
+import professionalTeam from "./assets/professional-team.webp";
+import maritimeServices from "./assets/maritime-services.webp";
 
 function Icon({ name }) {
   const paths = {
@@ -164,7 +164,14 @@ function ServicesSection() {
 
         <div className="services-showcase">
           <figure className="services-visual image-frame" data-reveal>
-            <img src={maritimeServices} alt="Maritime charts and documentation overlooking an international container port" loading="lazy" />
+            <img
+              src={maritimeServices}
+              alt="Maritime charts and documentation overlooking an international container port"
+              width="1536"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+            />
             <div className="services-visual-shade" />
             <figcaption>
               <span className="visual-kicker"><Icon name="compass" /> Maritime documentation</span>
@@ -293,6 +300,10 @@ function ContactSection() {
     }
 
     if (!form.checkValidity()) {
+      setSubmission({
+        status: "error",
+        message: "Please check the highlighted fields and complete all required information.",
+      });
       form.reportValidity();
       return;
     }
@@ -343,14 +354,6 @@ function ContactSection() {
               <dd>Titanum Glory Sdn. Bhd.</dd>
             </div>
             <div className="contact-detail">
-              <dt>Business email</dt>
-              <dd>Business email coming soon</dd>
-            </div>
-            <div className="contact-detail">
-              <dt>WhatsApp</dt>
-              <dd>WhatsApp contact coming soon</dd>
-            </div>
-            <div className="contact-detail">
               <dt>Office</dt>
               <dd>Port Klang, Selangor, Malaysia</dd>
             </div>
@@ -371,7 +374,7 @@ function ContactSection() {
           </div>
         </div>
 
-        <form className="enquiry-form" onSubmit={handleEnquirySubmit} data-reveal>
+        <form className="enquiry-form" onSubmit={handleEnquirySubmit} data-reveal aria-busy={submission.status === "submitting"}>
           <div className="form-heading">
             <span>Enquiry form</span>
             <small>Required fields are marked *</small>
@@ -417,7 +420,13 @@ function ContactSection() {
           </div>
 
           <div className="form-actions">
-            <p role="status" aria-live="polite">{submission.message}</p>
+            <p
+              className={`form-message form-message-${submission.status}`}
+              role={submission.status === "error" ? "alert" : "status"}
+              aria-live="polite"
+            >
+              {submission.message}
+            </p>
             <button className="button button-primary" type="submit" disabled={submission.status === "submitting"}>
               {submission.status === "submitting" ? "Sending enquiry" : "Submit enquiry"} <Icon name="arrow" />
             </button>
@@ -449,8 +458,9 @@ function App() {
 
   return (
     <div className="site">
+      <a className="skip-link" href="#main-content">Skip to main content</a>
       <header className="header">
-        <a className="brand" href="#home" aria-label="Titanum Glory home">
+        <a className="brand" href="/" aria-label="Titanum Glory home">
           <span className="brand-mark"><Icon name="compass" /></span>
           <span>Titanum <b>Glory</b></span>
         </a>
@@ -467,7 +477,7 @@ function App() {
         </a>
       </header>
 
-      <main>
+      <main id="main-content">
         <section
           className="hero"
           id="home"
@@ -526,7 +536,14 @@ function App() {
 
             <div className="image-purpose-grid" data-reveal>
               <figure className="about-image image-frame">
-                <img src={portOperations} alt="Modern cargo vessel at an international container port" />
+                <img
+                  src={portOperations}
+                  alt="Modern cargo vessel at an international container port"
+                  width="1536"
+                  height="1024"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <figcaption><span>Malaysian maritime documentation</span> Accurate, professional and efficient assistance.</figcaption>
               </figure>
               <div className="purpose-stack">
@@ -575,7 +592,14 @@ function App() {
               </ol>
             </div>
             <figure className="expertise-image image-frame" data-reveal>
-              <img src={documentation} alt="Maritime professional reviewing vessel documentation" loading="lazy" />
+              <img
+                src={documentation}
+                alt="Maritime professional reviewing vessel documentation"
+                width="1597"
+                height="985"
+                loading="lazy"
+                decoding="async"
+              />
               <div className="image-badge"><Icon name="shield" /><span><b>Carefully reviewed</b>Documentation you can trust</span></div>
             </figure>
           </div>
@@ -588,7 +612,14 @@ function App() {
         <section className="partnership section-soft" aria-labelledby="partnership-title">
           <div className="section-shell partnership-grid">
             <figure className="partnership-image image-frame" data-reveal>
-              <img src={professionalTeam} alt="Maritime professionals collaborating in a harbour office" loading="lazy" />
+              <img
+                src={professionalTeam}
+                alt="Maritime professionals collaborating in a harbour office"
+                width="1774"
+                height="887"
+                loading="lazy"
+                decoding="async"
+              />
             </figure>
             <div className="partnership-copy" data-reveal>
               <p className="section-label">A Personal Partnership</p>
@@ -608,7 +639,7 @@ function App() {
       <footer className="footer">
         <div className="section-shell footer-inner">
           <div className="footer-identity">
-            <a href="#home">Titanum Glory Sdn. Bhd.</a>
+            <a href="/" aria-label="Titanum Glory home">Titanum Glory Sdn. Bhd.</a>
             <p>Professional Malaysian Maritime Documentation Support</p>
           </div>
 

@@ -35,6 +35,22 @@ svg {
   background: var(--white);
 }
 
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: 12px;
+  left: 12px;
+  padding: 12px 16px;
+  color: var(--navy);
+  background: var(--white);
+  box-shadow: 0 4px 18px rgba(7, 24, 45, 0.2);
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 .section-shell {
   position: relative;
   width: var(--shell);
@@ -1432,6 +1448,16 @@ h2 {
   line-height: 1.55;
 }
 
+.form-message-success {
+  color: #23613f !important;
+  font-weight: 700;
+}
+
+.form-message-error {
+  color: #9d2d2d !important;
+  font-weight: 700;
+}
+
 .form-actions .button {
   flex: 0 0 auto;
   cursor: pointer;
@@ -1738,16 +1764,29 @@ button:focus-visible {
   }
 
   .hero-content {
+    min-width: 0;
     padding: 90px 0 130px;
   }
 
+  .eyebrow {
+    gap: 10px;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+  }
+
+  .eyebrow::before {
+    width: 34px;
+  }
+
   .hero h1 {
-    font-size: clamp(2.65rem, 13vw, 4rem);
+    font-size: clamp(2.35rem, 11.4vw, 3.4rem);
+    overflow-wrap: anywhere;
   }
 
   .hero-description {
     font-size: 0.94rem;
     line-height: 1.7;
+    overflow-wrap: anywhere;
   }
 
   .hero-actions {
