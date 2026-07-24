@@ -46,6 +46,7 @@ function Icon({ name }) {
       </>
     ),
     arrow: <path d="M5 12h14M14 7l5 5-5 5" />,
+    up: <path d="M12 19V5M7 10l5-5 5 5" />,
     compass: (
       <>
         <circle cx="12" cy="12" r="9" />
@@ -484,6 +485,8 @@ function ContactSection() {
 }
 
 function App() {
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
   useEffect(() => {
     const elements = document.querySelectorAll("[data-reveal]");
     const observer = new IntersectionObserver(
@@ -501,6 +504,31 @@ function App() {
     elements.forEach((element) => observer.observe(element));
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    function updateBackToTopVisibility() {
+      const enquiryForm = document.querySelector(".enquiry-form");
+      const formBounds = enquiryForm?.getBoundingClientRect();
+      const formIsVisible = formBounds
+        ? formBounds.top < window.innerHeight && formBounds.bottom > 0
+        : false;
+
+      setShowBackToTop(window.scrollY >= 400 && !formIsVisible);
+    }
+
+    updateBackToTopVisibility();
+    window.addEventListener("scroll", updateBackToTopVisibility, { passive: true });
+    window.addEventListener("resize", updateBackToTopVisibility);
+
+    return () => {
+      window.removeEventListener("scroll", updateBackToTopVisibility);
+      window.removeEventListener("resize", updateBackToTopVisibility);
+    };
+  }, []);
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 
   return (
     <div className="site">
@@ -578,6 +606,19 @@ function App() {
                   requirements accurately, professionally and efficiently.
                 </p>
               </div>
+            </div>
+
+            <div className="vision-mission-grid" aria-label="Our vision and mission">
+              <article className="vision-mission-card" data-reveal>
+                <span className="vision-mission-number">01</span>
+                <h3>Vision</h3>
+                <p>To become a trusted maritime solutions company supporting shipping businesses operating in Malaysia through reliable expertise, strong relationships and continuous innovation.</p>
+              </article>
+              <article className="vision-mission-card vision-mission-card-dark" data-reveal>
+                <span className="vision-mission-number">02</span>
+                <h3>Mission</h3>
+                <p>To simplify maritime operations for our clients by providing responsive, accurate and practical support across maritime documentation, regulatory compliance, marine insurance and future AI-powered maritime solutions.</p>
+              </article>
             </div>
 
             <div className="image-purpose-grid" data-reveal>
@@ -717,6 +758,17 @@ function App() {
           <p className="copyright">© {new Date().getFullYear()} Titanum Glory Sdn. Bhd. All rights reserved.</p>
         </div>
       </footer>
+
+      <button
+        className={`back-to-top${showBackToTop ? " is-visible" : ""}`}
+        type="button"
+        onClick={scrollToTop}
+        aria-label="Back to top"
+        aria-hidden={!showBackToTop}
+        tabIndex={showBackToTop ? 0 : -1}
+      >
+        <Icon name="up" />
+      </button>
     </div>
   );
 }

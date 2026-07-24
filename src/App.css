@@ -409,6 +409,78 @@ h2 {
   margin-top: 18px;
 }
 
+.vision-mission-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: clamp(58px, 7vw, 90px);
+}
+
+.vision-mission-card {
+  position: relative;
+  min-height: 360px;
+  padding: clamp(38px, 5vw, 64px);
+  overflow: hidden;
+  color: var(--text);
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.vision-mission-card::after {
+  content: "";
+  position: absolute;
+  right: -70px;
+  bottom: -70px;
+  width: 180px;
+  height: 180px;
+  border: 1px solid rgba(199, 163, 90, 0.26);
+  border-radius: 50%;
+}
+
+.vision-mission-card-dark {
+  color: var(--white);
+  background: var(--navy);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.vision-mission-number {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  color: rgba(199, 163, 90, 0.7);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.vision-mission-card h3 {
+  margin: 34px 0 22px;
+  color: var(--navy);
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  line-height: 1.08;
+}
+
+.vision-mission-card-dark h3 {
+  color: var(--white);
+}
+
+.vision-mission-card > p:last-child {
+  position: relative;
+  z-index: 1;
+  max-width: 530px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.85;
+}
+
+.vision-mission-card-dark > p:last-child {
+  color: rgba(255, 255, 255, 0.72);
+}
+
 .image-purpose-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(310px, 0.65fr);
@@ -1555,6 +1627,48 @@ h2 {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.back-to-top {
+  position: fixed;
+  z-index: 50;
+  right: clamp(18px, 2.5vw, 36px);
+  bottom: clamp(18px, 2.5vw, 36px);
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  color: var(--gold-light);
+  background: var(--navy);
+  border: 1px solid rgba(224, 201, 143, 0.35);
+  border-radius: 50%;
+  box-shadow: 0 14px 34px rgba(7, 24, 45, 0.28);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(14px);
+  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  box-shadow: 0 18px 40px rgba(7, 24, 45, 0.36);
+  transform: translateY(-3px);
+}
+
+.back-to-top svg {
+  width: 21px;
+  height: 21px;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--gold-light);
@@ -1667,6 +1781,10 @@ button:focus-visible {
   .contact-layout {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+
+  .vision-mission-grid {
+    grid-template-columns: 1fr;
   }
 
   .contact-introduction {
@@ -1843,6 +1961,11 @@ button:focus-visible {
     grid-template-columns: 1fr;
   }
 
+  .vision-mission-card {
+    min-height: 0;
+    padding: 38px 28px 44px;
+  }
+
   .purpose-card {
     min-height: 250px;
     padding: 34px 28px;
@@ -1957,5 +2080,10 @@ button:focus-visible {
   .contact-shape {
     width: 420px;
     height: 420px;
+  }
+
+  .back-to-top {
+    width: 48px;
+    height: 48px;
   }
 }
