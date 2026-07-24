@@ -146,6 +146,20 @@ const services = [
   },
 ];
 
+const enquiryOptions = [
+  "Malaysian Maritime Documentation",
+  "Marine Insurance",
+  "Certificate of Recognition (COR)",
+  "MSID (Malaysian Seafarer's Identity Document)",
+  "EDUCOR",
+  "GOC Endorsement",
+  "Medical Booklet Procurement",
+  "Regulatory & Compliance Support",
+  "Crew Documentation & Certification",
+  "Consultation / Not Sure Yet",
+  "Other",
+];
+
 function ServicesSection() {
   return (
     <section className="services section-dark" id="services" aria-labelledby="services-title">
@@ -285,13 +299,21 @@ function SupportCta() {
 
 function ContactSection() {
   const [submission, setSubmission] = useState({ status: "idle", message: "Your details will be handled with care and used only to respond to your enquiry." });
+  const [selectedService, setSelectedService] = useState("");
 
   async function handleEnquirySubmit(event) {
     event.preventDefault();
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const requiredFields = ["name", "email", "country", "service", "message"];
+    const requiredFields = [
+      "name",
+      "email",
+      "country",
+      "service",
+      "message",
+      ...(formData.get("service") === "Other" ? ["serviceDetails"] : []),
+    ];
 
     for (const fieldName of requiredFields) {
       const field = form.elements.namedItem(fieldName);
@@ -323,6 +345,7 @@ function ContactSection() {
       }
 
       form.reset();
+      setSelectedService("");
       setSubmission({
         status: "success",
         message: "Thank you. Your enquiry has been sent successfully, and our team will be in touch soon.",
@@ -402,14 +425,37 @@ function ContactSection() {
             </div>
 
             <div className="form-field form-field-wide">
-              <label htmlFor="service">Service required *</label>
-              <select id="service" name="service" defaultValue="" onInput={clearFieldError} required>
+              <label htmlFor="service">How can we help you? *</label>
+              <select
+                id="service"
+                name="service"
+                value={selectedService}
+                onChange={(event) => {
+                  setSelectedService(event.currentTarget.value);
+                  event.currentTarget.setCustomValidity("");
+                }}
+                required
+              >
                 <option value="" disabled>Select a service</option>
-                {services.map((service) => (
-                  <option value={service.title} key={service.title}>{service.title}</option>
+                {enquiryOptions.map((option) => (
+                  <option value={option} key={option}>{option}</option>
                 ))}
               </select>
             </div>
+
+            {selectedService === "Other" && (
+              <div className="form-field form-field-wide">
+                <label htmlFor="serviceDetails">Please specify *</label>
+                <input
+                  id="serviceDetails"
+                  name="serviceDetails"
+                  type="text"
+                  maxLength="200"
+                  onInput={clearFieldError}
+                  required
+                />
+              </div>
+            )}
 
             <div className="form-field form-field-wide">
               <label htmlFor="message">Message *</label>

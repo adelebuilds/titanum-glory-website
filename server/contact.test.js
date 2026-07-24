@@ -8,13 +8,19 @@ const validPayload = {
   email: "adele@example.com",
   country: "Malaysia",
   service: SERVICE_NAMES[0],
+  serviceDetails: "",
   message: "Please advise on the required documents.",
 };
 
 test("accepts every service offered by the website form", () => {
   for (const service of SERVICE_NAMES) {
-    const result = validateContactPayload({ ...validPayload, service });
-    assert.deepEqual(result.data, { ...validPayload, service });
+    const payload = {
+      ...validPayload,
+      service,
+      serviceDetails: service === "Other" ? "A different maritime enquiry" : "",
+    };
+    const result = validateContactPayload(payload);
+    assert.deepEqual(result.data, payload);
   }
 });
 
@@ -31,6 +37,33 @@ test("rejects malformed email addresses", () => {
 test("rejects services that are not offered by the website", () => {
   const result = validateContactPayload({ ...validPayload, service: "Unsupported service" });
   assert.equal(result.error, "Please select a valid service.");
+});
+
+test("requires details only when Other is selected", () => {
+  const missingDetails = validateContactPayload({
+    ...validPayload,
+    service: "Other",
+    serviceDetails: " ",
+  });
+  const standardOption = validateContactPayload({
+    ...validPayload,
+    service: "Marine Insurance",
+    serviceDetails: "",
+  });
+
+  assert.equal(missingDetails.error, "Please specify how we can help you.");
+  assert.equal(standardOption.error, undefined);
+});
+
+test("includes Other details in the enquiry email", () => {
+  const email = createEnquiryEmail({
+    ...validPayload,
+    service: "Other",
+    serviceDetails: "Port documentation advice",
+  });
+
+  assert.match(email.text, /Please specify: Port documentation advice/);
+  assert.match(email.html, /<strong>Please specify<\/strong>/);
 });
 
 test("escapes submitted values in the HTML email", () => {

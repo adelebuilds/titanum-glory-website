@@ -9,6 +9,7 @@ const validBody = {
   email: "adele@example.com",
   country: "Malaysia",
   service: SERVICE_NAMES[0],
+  serviceDetails: "",
   message: "Please advise on the required documents.",
 };
 

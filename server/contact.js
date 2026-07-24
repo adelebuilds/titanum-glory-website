@@ -1,10 +1,15 @@
 export const SERVICE_NAMES = [
-  "MSID (Malaysian Seafarer's Identity Document)",
+  "Malaysian Maritime Documentation",
+  "Marine Insurance",
   "Certificate of Recognition (COR)",
+  "MSID (Malaysian Seafarer's Identity Document)",
   "EDUCOR",
   "GOC Endorsement",
   "Medical Booklet Procurement",
-  "Malaysian Maritime Documentation Support",
+  "Regulatory & Compliance Support",
+  "Crew Documentation & Certification",
+  "Consultation / Not Sure Yet",
+  "Other",
 ];
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -14,6 +19,7 @@ const FIELD_LIMITS = {
   email: 254,
   country: 100,
   service: 100,
+  serviceDetails: 200,
   message: 5000,
 };
 
@@ -42,6 +48,10 @@ export function validateContactPayload(payload) {
     return { error: "Please select a valid service." };
   }
 
+  if (data.service === "Other" && !data.serviceDetails) {
+    return { error: "Please specify how we can help you." };
+  }
+
   return { data };
 }
 
@@ -60,6 +70,7 @@ export function createEnquiryEmail(data) {
     Object.entries(data).map(([field, value]) => [field, escapeHtml(value)]),
   );
   const company = safe.company || "Not provided";
+  const serviceDetails = safe.serviceDetails || "Not provided";
 
   return {
     subject: `New website enquiry: ${data.service}`,
@@ -70,7 +81,8 @@ export function createEnquiryEmail(data) {
       `Company: ${data.company || "Not provided"}`,
       `Email: ${data.email}`,
       `Country: ${data.country}`,
-      `Service required: ${data.service}`,
+      `How can we help you?: ${data.service}`,
+      ...(data.service === "Other" ? [`Please specify: ${data.serviceDetails}`] : []),
       "",
       "Message:",
       data.message,
@@ -83,7 +95,8 @@ export function createEnquiryEmail(data) {
         <tr><td><strong>Company</strong></td><td>${company}</td></tr>
         <tr><td><strong>Email</strong></td><td>${safe.email}</td></tr>
         <tr><td><strong>Country</strong></td><td>${safe.country}</td></tr>
-        <tr><td><strong>Service required</strong></td><td>${safe.service}</td></tr>
+        <tr><td><strong>How can we help you?</strong></td><td>${safe.service}</td></tr>
+        ${data.service === "Other" ? `<tr><td><strong>Please specify</strong></td><td>${serviceDetails}</td></tr>` : ""}
       </table>
       <h3>Message</h3>
       <p style="white-space:pre-wrap">${safe.message}</p>
