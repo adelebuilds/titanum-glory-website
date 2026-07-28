@@ -5,6 +5,8 @@ import portOperations from "./assets/port-operations.webp";
 import documentation from "./assets/documentation.webp";
 import professionalTeam from "./assets/professional-team.webp";
 import maritimeServices from "./assets/maritime-services.webp";
+import adeleYeoh from "./assets/adele-yeoh.png";
+import tommy from "./assets/tommy.png";
 
 function Icon({ name }) {
   const paths = {
@@ -279,16 +281,18 @@ function WhyChooseSection() {
 
 const teamMembers = [
   {
-    initials: "AY",
     name: "Adele Yeoh",
-    role: "Lead – Strategy & Operations",
-    description: "Responsible for business strategy, operations, client experience, marketing, AI transformation and company development.",
+    role: "Business Development & Operations Lead",
+    description: "Adele leads business development and operations, building client relationships, supporting strategic growth and ensuring the smooth delivery of Titanum Glory's maritime services.",
+    image: adeleYeoh,
+    imagePosition: "center 30%",
   },
   {
-    initials: "TK",
     name: "Tommy Kho",
-    role: "Marine Insurance Lead",
-    description: "Responsible for marine insurance advice, risk assessment, policy recommendations and supporting clients with appropriate insurance solutions.",
+    role: "Marine Insurance Advisor",
+    description: "Tommy advises clients on marine insurance, helping them assess risk, understand their coverage needs and identify suitable protection for their maritime operations.",
+    image: tommy,
+    imagePosition: "center 30%",
   },
 ];
 
@@ -298,15 +302,19 @@ function TeamSection() {
       <div className="team-heading" data-reveal>
         <div>
           <p className="section-label">The people behind our service</p>
-          <h2 id="team-title">Meet the Team</h2>
+          <h2 id="team-title">Leadership Team</h2>
         </div>
         <p>Focused leadership across maritime operations, client experience and marine insurance.</p>
       </div>
       <div className="team-grid">
         {teamMembers.map((member, index) => (
           <article className="team-card" key={member.name} data-reveal>
-            <div className="team-card-top">
-              <span className="team-initials" aria-hidden="true">{member.initials}</span>
+            <div className="team-card-media">
+              <img
+                src={member.image}
+                alt={`${member.name}, ${member.role}`}
+                style={{ objectPosition: member.imagePosition }}
+              />
               <span className="team-number">0{index + 1}</span>
             </div>
             <div className="team-card-copy">
