@@ -293,6 +293,7 @@ const teamMembers = [
     image: adeleYeoh,
     imagePosition: "center 30%",
     linkedinUrl: "https://www.linkedin.com/in/adeleyeoh",
+    linkedinLabel: "View Adele’s LinkedIn Profile",
   },
   {
     name: "Tommy Kho",
@@ -300,6 +301,8 @@ const teamMembers = [
     description: "Tommy advises clients on marine insurance, helping them assess risk, understand their coverage needs and identify suitable protection for their maritime operations.",
     image: tommy,
     imagePosition: "center 30%",
+    linkedinUrl: "https://www.linkedin.com/in/tommy-kho-b097b987",
+    linkedinLabel: "View Tommy's LinkedIn Profile",
   },
 ];
 
@@ -336,7 +339,7 @@ function TeamSection() {
                   rel="noopener noreferrer"
                 >
                   <Icon name="linkedin" />
-                  View Adele’s LinkedIn Profile
+                  {member.linkedinLabel}
                 </a>
               )}
             </div>
