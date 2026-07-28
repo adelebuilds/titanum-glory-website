@@ -101,6 +101,12 @@ function Icon({ name }) {
         <path d="M5 4h7" />
       </>
     ),
+    linkedin: (
+      <>
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M8 11v5M8 8v.01M12 16v-5M12 13.2a2.2 2.2 0 0 1 4.4 0V16" />
+      </>
+    ),
   };
 
   return (
@@ -286,6 +292,7 @@ const teamMembers = [
     description: "Adele leads Titanum Glory's business development, operations, branding, marketing, and AI transformation initiatives. She works closely with maritime companies to build long-term partnerships while driving innovation through technology and practical AI solutions that enhance the way Titanum Glory serves its clients.",
     image: adeleYeoh,
     imagePosition: "center 30%",
+    linkedinUrl: "https://www.linkedin.com/in/adeleyeoh",
   },
   {
     name: "Tommy Kho",
@@ -320,7 +327,18 @@ function TeamSection() {
             <div className="team-card-copy">
               <h3>{member.name}</h3>
               <p className="team-role">{member.role}</p>
-              <p>{member.description}</p>
+              <p className="team-description">{member.description}</p>
+              {member.linkedinUrl && (
+                <a
+                  className="team-linkedin"
+                  href={member.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon name="linkedin" />
+                  View Adele’s LinkedIn Profile
+                </a>
+              )}
             </div>
           </article>
         ))}
@@ -393,6 +411,29 @@ function SupportCta() {
           <a className="button button-primary" href="#contact">Contact Us <Icon name="arrow" /></a>
           <a className="button button-secondary" href="#services">View Our Services</a>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function FollowJourneySection() {
+  return (
+    <section className="linkedin-journey" aria-labelledby="linkedin-journey-title">
+      <div className="section-shell linkedin-journey-inner" data-reveal>
+        <div>
+          <p className="section-label section-label-light">Stay Connected</p>
+          <h2 id="linkedin-journey-title">Follow Our Journey</h2>
+          <p>We share practical insights on maritime operations, marine insurance, industry developments, and the work behind Titanum Glory.</p>
+        </div>
+        <a
+          className="button button-primary"
+          href="https://www.linkedin.com/company/titanum-glory-sdn-bhd/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name="linkedin" />
+          Follow Titanum Glory on LinkedIn
+        </a>
       </div>
     </section>
   );
@@ -823,6 +864,8 @@ function App() {
         <SupportCta />
 
         <ContactSection />
+
+        <FollowJourneySection />
       </main>
 
       <footer className="footer">
@@ -830,6 +873,15 @@ function App() {
           <div className="footer-identity">
             <a href="/" aria-label="Titanum Glory home">Titanum Glory Sdn. Bhd.</a>
             <p>Maritime Solutions for Shipping Companies Operating in Malaysia</p>
+            <a
+              className="footer-linkedin"
+              href="https://www.linkedin.com/company/titanum-glory-sdn-bhd/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow Titanum Glory on LinkedIn"
+            >
+              <Icon name="linkedin" />
+            </a>
           </div>
 
           <div className="footer-directory">
