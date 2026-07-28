@@ -441,7 +441,7 @@ function ContactSection() {
       setSelectedService("");
       setSubmission({
         status: "success",
-        message: "Thank you. Your enquiry has been sent successfully, and our team will be in touch soon.",
+        message: "Thank you. Your enquiry has been sent successfully. We’ll be in touch soon.",
       });
     } catch (error) {
       setSubmission({
@@ -563,11 +563,12 @@ function ContactSection() {
               className={`form-message form-message-${submission.status}`}
               role={submission.status === "error" ? "alert" : "status"}
               aria-live="polite"
+              aria-atomic="true"
             >
               {submission.message}
             </p>
             <button className="button button-primary" type="submit" disabled={submission.status === "submitting"}>
-              {submission.status === "submitting" ? "Sending enquiry" : "Submit enquiry"} <Icon name="arrow" />
+              {submission.status === "submitting" ? "Sending…" : "Submit enquiry"} <Icon name="arrow" />
             </button>
           </div>
         </form>

@@ -1726,7 +1726,13 @@ h2 {
 }
 
 .form-message-success {
-  color: #23613f !important;
+  max-width: 430px !important;
+  padding: 14px 16px;
+  color: var(--navy) !important;
+  background: var(--white);
+  border: 1px solid rgba(199, 163, 90, 0.55);
+  border-left: 4px solid var(--gold);
+  box-shadow: 0 8px 22px rgba(7, 24, 45, 0.08);
   font-weight: 700;
 }
 
@@ -1738,6 +1744,17 @@ h2 {
 .form-actions .button {
   flex: 0 0 auto;
   cursor: pointer;
+}
+
+.form-actions .button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+  transform: none;
+  box-shadow: none;
+}
+
+.form-actions .button:disabled::before {
+  transform: translateX(-102%);
 }
 
 .footer {
@@ -2272,6 +2289,11 @@ button:focus-visible {
 
   .form-actions .button {
     width: 100%;
+  }
+
+  .form-message-success {
+    width: 100%;
+    max-width: none !important;
   }
 
   .footer-directory {
