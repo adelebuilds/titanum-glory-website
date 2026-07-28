@@ -283,7 +283,7 @@ const teamMembers = [
   {
     name: "Adele Yeoh",
     role: "Business Development & Operations Lead",
-    description: "Adele leads business development and operations, building client relationships, supporting strategic growth and ensuring the smooth delivery of Titanum Glory's maritime services.",
+    description: "Adele leads Titanum Glory's business development, operations, branding, marketing, and AI transformation initiatives. She works closely with maritime companies to build long-term partnerships while driving innovation through technology and practical AI solutions that enhance the way Titanum Glory serves its clients.",
     image: adeleYeoh,
     imagePosition: "center 30%",
   },
