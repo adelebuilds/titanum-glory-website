@@ -7,6 +7,7 @@ function ConnectIcon({ name }) {
   const icons = {
     contact: <><circle cx="9" cy="8" r="3" /><path d="M3.5 20a5.5 5.5 0 0 1 11 0M17 8h4M19 6v4" /></>,
     whatsapp: <><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.5L3 20.5l1.4-4.7a8.5 8.5 0 1 1 16.1-4.2Z" /><path d="M8.3 7.5c.2-.4.4-.4.7-.4h.4l1 2.3c.1.3 0 .5-.2.7l-.7.8c.9 1.8 2.3 3.2 4.1 4l.7-.8c.2-.2.5-.3.7-.2l2.3 1.1v.4c0 .4 0 .6-.3.8-.5.5-1.4.8-2.1.7-3.8-.6-7.2-3.7-7.7-7.5-.1-.7.4-1.5 1.1-1.9Z" /></>,
+    phone: <path d="M6.6 3h3l1.5 4.1-1.9 1.6a15.2 15.2 0 0 0 6.1 6.1l1.6-1.9L21 14.4v3a3.6 3.6 0 0 1-3.8 3.6A14.2 14.2 0 0 1 3 6.8 3.6 3.6 0 0 1 6.6 3Z" />,
     mail: <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></>,
     globe: <><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" /></>,
     linkedin: <><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M8 11v5M8 8v.01M12 16v-5M12 13.2a2.2 2.2 0 0 1 4.4 0V16" /></>,
@@ -19,15 +20,36 @@ function ConnectIcon({ name }) {
   return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">{icons[name]}</svg>;
 }
 
-const actions = [
+const primaryActions = [
   { label: "Save Contact", href: "/titanum-glory.vcf", icon: "contact", download: true },
   { label: "WhatsApp Titanum Glory", href: "https://wa.me/60164637870", icon: "whatsapp", external: true },
-  { label: "Email Us", href: "mailto:hello@titanumglory.com", icon: "mail", external: true },
-  { label: "Visit Website", href: "https://www.titanumglory.com", icon: "globe", external: true },
-  { label: "Adele’s LinkedIn", href: "https://www.linkedin.com/in/adeleyeoh", icon: "linkedin", external: true },
-  { label: "Tommy’s LinkedIn", href: "https://www.linkedin.com/in/tommy-kho-b097b987", icon: "linkedin", external: true },
-  { label: "Titanum Glory LinkedIn", href: "https://www.linkedin.com/company/titanum-glory-sdn-bhd/", icon: "linkedin", external: true },
+  { label: "Call Titanum Glory", href: "tel:+60164637870", icon: "phone" },
+  { label: "Email Titanum Glory", href: "mailto:hello@titanumglory.com", icon: "mail", external: true },
 ];
+
+const moreActions = [
+  { label: "Visit Titanum Glory Website", href: "https://www.titanumglory.com", icon: "globe", external: true },
+  { label: "View Adele Yeoh on LinkedIn", href: "https://www.linkedin.com/in/adeleyeoh", icon: "linkedin", external: true },
+  { label: "View Tommy Kho on LinkedIn", href: "https://www.linkedin.com/in/tommy-kho-b097b987", icon: "linkedin", external: true },
+  { label: "Follow Titanum Glory on LinkedIn", href: "https://www.linkedin.com/company/titanum-glory-sdn-bhd/", icon: "linkedin", external: true },
+];
+
+function ActionLink({ action, primary = false }) {
+  return (
+    <a
+      className={`connect-action${primary ? " connect-action-primary" : ""}`}
+      href={action.href}
+      download={action.download ? "Titanum-Glory.vcf" : undefined}
+      target={action.external ? "_blank" : undefined}
+      rel={action.external ? "noopener noreferrer" : undefined}
+      aria-label={action.external ? `${action.label} (opens in a new tab)` : action.label}
+    >
+      <span className="connect-action-icon"><ConnectIcon name={action.icon} /></span>
+      <span>{action.label}</span>
+      <ConnectIcon name="arrow" />
+    </a>
+  );
+}
 
 const solutions = [
   "Maritime Documentation",
@@ -78,9 +100,10 @@ function ConnectPage() {
             <span>Titanum <b>Glory</b></span>
           </a>
           <div className="connect-identity">
-            <p className="connect-eyebrow">Malaysia · Maritime</p>
-            <h1>Titanum Glory<br /><span>Sdn Bhd</span></h1>
-            <p>Maritime Solutions for Shipping Companies Operating in Malaysia</p>
+            <h1>Welcome. Thank you for connecting with Titanum Glory.</h1>
+            <p className="connect-person-name">Adele Yeoh</p>
+            <p className="connect-person-role">Business Development Lead<br />Titanum Glory Sdn Bhd</p>
+            <p className="connect-introduction">Whether you are looking for maritime documentation, marine insurance, or simply wish to stay connected, everything you need is below.</p>
           </div>
         </div>
       </header>
@@ -88,21 +111,28 @@ function ConnectPage() {
       <main id="connect-main">
         <section className="connect-actions-section" aria-labelledby="connect-actions-title">
           <div className="connect-shell">
-            <p className="connect-section-label" id="connect-actions-title">Connect with us</p>
-            <div className="connect-actions">
-              {actions.map((action, index) => (
-                <a className={`connect-action${index === 0 ? " connect-action-primary" : ""}`} href={action.href} key={action.label}
-                  download={action.download ? "Titanum-Glory.vcf" : undefined} target={action.external ? "_blank" : undefined}
-                  rel={action.external ? "noopener noreferrer" : undefined}
-                  aria-label={action.external ? `${action.label} (opens in a new tab)` : action.label}>
-                  <span className="connect-action-icon"><ConnectIcon name={action.icon} /></span>
-                  <span>{action.label}</span><ConnectIcon name="arrow" />
-                </a>
-              ))}
+            <p className="connect-section-label" id="connect-actions-title">Contact Titanum Glory</p>
+            <div className="connect-actions connect-primary-actions">
+              {primaryActions.map((action) => <ActionLink action={action} primary key={action.label} />)}
+            </div>
+          </div>
+        </section>
+
+        <section className="connect-more" aria-labelledby="connect-more-title">
+          <div className="connect-shell">
+            <p className="connect-section-label">Stay connected</p>
+            <h2 id="connect-more-title">Connect &amp; Learn More</h2>
+            <div className="connect-actions connect-more-actions">
+              {moreActions.map((action) => <ActionLink action={action} key={action.label} />)}
               <button className="connect-action" type="button" onClick={copyWeChatId} aria-describedby="copy-status">
                 <span className="connect-action-icon"><ConnectIcon name="copy" /></span>
                 <span>Copy WeChat ID</span><ConnectIcon name="copy" />
               </button>
+              {/* TODO: Replace this placeholder path when the final company profile PDF is added to /public. */}
+              <a className="connect-action" href="/company-profile.pdf" download>
+                <span className="connect-action-icon"><ConnectIcon name="document" /></span>
+                <span>Download Company Profile</span><ConnectIcon name="arrow" />
+              </a>
             </div>
             <p className={`connect-copy-status${copyMessage ? " is-visible" : ""}`} id="copy-status" role="status" aria-live="polite">{copyMessage}</p>
           </div>
@@ -124,11 +154,16 @@ function ConnectPage() {
           </div>
         </section>
 
-        <section className="connect-profile" aria-labelledby="connect-profile-title">
-          <div className="connect-shell connect-profile-inner">
-            <div><p className="connect-section-label">Learn more</p><h2 id="connect-profile-title">Company Profile</h2></div>
-            {/* TODO: Replace this placeholder path when the final company profile PDF is added to /public. */}
-            <a className="connect-profile-button" href="/company-profile.pdf" download><ConnectIcon name="document" /><span>Download Company Profile</span><ConnectIcon name="arrow" /></a>
+        <section className="connect-closing" aria-labelledby="connect-closing-title">
+          <div className="connect-shell connect-closing-inner">
+            <div>
+              <p className="connect-section-label">Ready when you are</p>
+              <h2 id="connect-closing-title">Working with an upcoming crew change, vessel documentation, or marine insurance enquiry?</h2>
+              <p>Contact us today. We would be pleased to assist.</p>
+            </div>
+            <a className="connect-closing-button" href="https://www.titanumglory.com/#contact" target="_blank" rel="noopener noreferrer">
+              <span>Contact Titanum Glory</span><ConnectIcon name="arrow" />
+            </a>
           </div>
         </section>
       </main>
