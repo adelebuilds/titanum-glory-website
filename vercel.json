@@ -1,5 +1,28 @@
 {
+  "rewrites": [
+    {
+      "source": "/connect",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/connect/",
+      "destination": "/index.html"
+    }
+  ],
   "headers": [
+    {
+      "source": "/titanum-glory.vcf",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/vcard; charset=utf-8"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=Titanum-Glory.vcf"
+        }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [
