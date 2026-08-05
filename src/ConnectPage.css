@@ -41,8 +41,7 @@
 .connect-identity { margin-top: 22px; }
 .connect-section-label { margin: 0 0 16px; color: #9d7b3d; font-size: .66rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
 .connect-identity h1 { max-width: 620px; margin: 0; overflow-wrap: anywhere; color: #fff; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.32rem, 5.8vw, 2.15rem); font-weight: 400; letter-spacing: -.025em; line-height: 1.15; }
-.connect-person-name { margin: 12px 0 0; color: var(--connect-gold-light); font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.55rem, 7vw, 2.35rem); line-height: 1; }
-.connect-person-role { margin: 5px 0 0; color: #fff; font-size: .72rem; font-weight: 750; letter-spacing: .025em; line-height: 1.45; }
+.connect-subtitle { margin: 11px 0 0; color: var(--connect-gold-light); font-size: clamp(.85rem, 3.5vw, 1.05rem); font-weight: 750; line-height: 1.45; }
 .connect-introduction { max-width: 650px; margin: 11px 0 0; overflow-wrap: anywhere; color: rgba(255,255,255,.7); font-size: .76rem; line-height: 1.5; }
 
 .connect-actions-section { padding: 22px 0 54px; background: #f7f5f0; }
@@ -90,7 +89,7 @@
 .connect-footer-heading b { color: #fff; font-size: .83rem; letter-spacing: .04em; }
 .connect-footer-heading div span { font-size: .7rem; }
 .connect-contact-list { margin: 35px 0 0; border-top: 1px solid rgba(255,255,255,.12); }
-.connect-contact-list > div { padding: 15px 0; display: grid; grid-template-columns: 92px minmax(0,1fr); gap: 16px; border-bottom: 1px solid rgba(255,255,255,.12); }
+.connect-contact-list > div { padding: 15px 0; display: grid; grid-template-columns: 112px minmax(0,1fr); gap: 16px; border-bottom: 1px solid rgba(255,255,255,.12); }
 .connect-contact-list dt { color: var(--connect-gold-light); font-size: .62rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .connect-contact-list dd { margin: 0; overflow-wrap: anywhere; color: #fff; font-size: .78rem; font-weight: 700; }
 .connect-contact-list a { text-decoration: underline; text-decoration-color: rgba(224,201,143,.4); text-underline-offset: 4px; }

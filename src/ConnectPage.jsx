@@ -21,17 +21,15 @@ function ConnectIcon({ name }) {
 }
 
 const primaryActions = [
-  { label: "Save Contact", href: "/titanum-glory.vcf", icon: "contact", download: true },
+  { label: "Save Titanum Glory Contact", href: "/titanum-glory.vcf", icon: "contact", download: true },
   { label: "WhatsApp Titanum Glory", href: "https://wa.me/60164637870", icon: "whatsapp", external: true },
-  { label: "Call Titanum Glory", href: "tel:+60164637870", icon: "phone" },
+  { label: "Call Titanum Glory", href: "tel:+60331671717", icon: "phone" },
   { label: "Email Titanum Glory", href: "mailto:hello@titanumglory.com", icon: "mail", external: true },
 ];
 
 const moreActions = [
-  { label: "Visit Titanum Glory Website", href: "https://www.titanumglory.com", icon: "globe", external: true },
-  { label: "View Adele Yeoh on LinkedIn", href: "https://www.linkedin.com/in/adeleyeoh", icon: "linkedin", external: true },
-  { label: "View Tommy Kho on LinkedIn", href: "https://www.linkedin.com/in/tommy-kho-b097b987", icon: "linkedin", external: true },
-  { label: "Follow Titanum Glory on LinkedIn", href: "https://www.linkedin.com/company/titanum-glory-sdn-bhd/", icon: "linkedin", external: true },
+  { label: "Visit Website", href: "https://www.titanumglory.com", icon: "globe", external: true },
+  { label: "Company LinkedIn", href: "https://www.linkedin.com/company/titanum-glory-sdn-bhd/", icon: "linkedin", external: true },
 ];
 
 function ActionLink({ action, primary = false }) {
@@ -100,10 +98,9 @@ function ConnectPage() {
             <span>Titanum <b>Glory</b></span>
           </a>
           <div className="connect-identity">
-            <h1>Welcome. Thank you for connecting with Titanum Glory.</h1>
-            <p className="connect-person-name">Adele Yeoh</p>
-            <p className="connect-person-role">Business Development Lead<br />Titanum Glory Sdn Bhd</p>
-            <p className="connect-introduction">Whether you are looking for maritime documentation, marine insurance, or simply wish to stay connected, everything you need is below.</p>
+            <h1>Welcome to Titanum Glory</h1>
+            <p className="connect-subtitle">Thank you for connecting with Titanum Glory.</p>
+            <p className="connect-introduction">Whether you require maritime documentation, marine insurance, or simply wish to connect with our team, all of our contact information is available below.</p>
           </div>
         </div>
       </header>
@@ -126,7 +123,7 @@ function ConnectPage() {
               {moreActions.map((action) => <ActionLink action={action} key={action.label} />)}
               <button className="connect-action" type="button" onClick={copyWeChatId} aria-describedby="copy-status">
                 <span className="connect-action-icon"><ConnectIcon name="copy" /></span>
-                <span>Copy WeChat ID</span><ConnectIcon name="copy" />
+                <span>WeChat ID</span><ConnectIcon name="copy" />
               </button>
               {/* TODO: Replace this placeholder path when the final company profile PDF is added to /public. */}
               <a className="connect-action" href="/company-profile.pdf" download>
@@ -172,9 +169,11 @@ function ConnectPage() {
         <div className="connect-shell">
           <div className="connect-footer-heading"><span className="connect-brand-mark"><ConnectIcon name="compass" /></span><div><b>Titanum Glory Sdn Bhd</b><span>Port Klang, Malaysia</span></div></div>
           <dl className="connect-contact-list">
-            <div><dt>WhatsApp</dt><dd><a href="https://wa.me/60164637870" target="_blank" rel="noopener noreferrer">+60 16-463 7870</a></dd></div>
+            <div><dt>Office Phone</dt><dd><a href="tel:+60331671717">+603 3167 1717</a></dd></div>
+            <div><dt>WhatsApp</dt><dd><a href="https://wa.me/60164637870" target="_blank" rel="noopener noreferrer">+60 16 463 7870</a></dd></div>
             <div><dt>Email</dt><dd><a href="mailto:hello@titanumglory.com" target="_blank" rel="noopener noreferrer">hello@titanumglory.com</a></dd></div>
-            <div><dt>Website</dt><dd><a href="https://www.titanumglory.com" target="_blank" rel="noopener noreferrer">www.titanumglory.com</a></dd></div>
+            <div><dt>Website</dt><dd><a href="https://www.titanumglory.com" target="_blank" rel="noopener noreferrer">https://www.titanumglory.com</a></dd></div>
+            <div><dt>Company LinkedIn</dt><dd><a href="https://www.linkedin.com/company/titanum-glory-sdn-bhd/" target="_blank" rel="noopener noreferrer">Titanum Glory Sdn Bhd</a></dd></div>
             <div><dt>WeChat ID</dt><dd>{WECHAT_ID}</dd></div>
           </dl>
           <p className="connect-copyright">© {new Date().getFullYear()} Titanum Glory Sdn Bhd. All rights reserved.</p>
